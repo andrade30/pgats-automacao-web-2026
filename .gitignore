@@ -1,0 +1,10 @@
+# Dependências do Node.js
+node_modules/
+
+# Logs e ficheiros temporários
+cypress/downloads/
+cypress/log/
+*.log
+
+# Relatórios gerados pelos testes
+cypress/reports/
