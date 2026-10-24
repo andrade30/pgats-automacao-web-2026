@@ -3,8 +3,13 @@ node_modules/
 
 # Logs e ficheiros temporários
 cypress/downloads/
-cypress/log/
+/log
 *.log
+results
 
 # Relatórios gerados pelos testes
 cypress/reports/
+cypress/screenshots
+
+# Variáveis de Ambiente
+.env

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:browserstack": "dotenv -- browserstack-cypress run"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +14,7 @@
     "@faker-js/faker": "^10.6.0",
     "cypress": "^13.7.3",
     "cypress-mochawesome-reporter": "^5.0.0",
-    "cypress-xpath": "^2.0.1"
+    "cypress-xpath": "^2.0.1",
+    "dotenv-cli": "^11.0.0"
   }
 }
