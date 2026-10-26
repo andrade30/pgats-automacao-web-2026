@@ -13,3 +13,5 @@ cypress/screenshots
 
 # Variáveis de Ambiente
 .env
+
+npm_install_debug.log
