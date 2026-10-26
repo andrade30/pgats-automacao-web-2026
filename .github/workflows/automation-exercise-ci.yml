@@ -56,8 +56,13 @@ jobs:
       - run: npm ci
 
       - name: Rodar no BrowserStack
-        run: npx browserstack-cypress run --sync
+        run: >
+          npm run test:browserstack --
+          --env LOGIN_EMAIL=$LOGIN_EMAIL,LOGIN_PASSWORD=$LOGIN_PASSWORD,LOGIN_NAME="$LOGIN_NAME"
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
           BROWSERSTACK_BUILD_NAME: gha-${{ github.run_number }}
+          LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
+          LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
+          LOGIN_NAME: ${{ secrets.LOGIN_NAME }}
