@@ -10,7 +10,7 @@ describe("Automation Exercise", () => {
       .and("have.attr", "alt", "Website for automation practice");
   });
 
-  it("Cadastrar um novo usuário com sucesso", () => {
+  it("Validar o cadastro de um novo usuário com sucesso", () => {
     cy.get('a[href="/login"]').contains("Signup / Login").click();
 
     const timestamp = Date.now();

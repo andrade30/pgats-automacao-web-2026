@@ -1,0 +1,39 @@
+{
+  "usuarioCanada": {
+    "name": "QAx",
+    "lastName": "Automation",
+    "password": "pwd123",
+    "day": "1",
+    "month": "November",
+    "year": "1990",
+    "company": "XPTO",
+    "address": "Rua A, n° 25, São José Operário",
+    "country": "Canada",
+    "state": "Quebec",
+    "city": "Montreal",
+    "zipcode": "68901-170",
+    "mobile": "92 99999-9999"
+  },
+  "usuarioEUA": {
+    "name": "Ravi",
+    "lastName": "Bezerra",
+    "password": "pwd123",
+    "day": "8",
+    "month": "August",
+    "year": "1995",
+    "company": "XPTO",
+    "address": "Rua Servidão Luiz Cardoso, n° 40, Itaum",
+    "country": "United States",
+    "state": "California",
+    "city": "San Francisco",
+    "zipcode": "89723-155",
+    "mobile": "47 99999-9999"
+  },
+  "credenciaisInvalidas": {
+  "email": "usuario.inexistente@teste.com",
+  "password": "SenhaInvalida123"
+  },
+  "assinatura": {
+  "email": "soraya@email.com"
+ }
+}

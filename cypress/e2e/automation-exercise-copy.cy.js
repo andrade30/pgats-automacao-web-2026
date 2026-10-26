@@ -7,7 +7,7 @@ describe("Automation Exercise", () => {
       .and("have.attr", "alt", "Website for automation practice");
   });
 
-  it("Cadastrar um novo usuário com sucesso", () => {
+  it("CT001: Validar o cadastro de um novo usuário com sucesso", () => {
     const user = {
       name: 'QAx',
       lastName: 'Automation',
@@ -41,7 +41,7 @@ describe("Automation Exercise", () => {
     cy.get('[data-qa="continue-button"]').contains("Continue").click();
   });
 
-  it("Validar login de usuário com e-mail e senha corretos", () => {
+  it("CT002: Validar login de usuário com e-mail e senha corretos", () => {
     cy.login(Cypress.env("LOGIN_EMAIL"), Cypress.env("LOGIN_PASSWORD"));
 
     cy.get(".navbar-nav li")
@@ -49,12 +49,12 @@ describe("Automation Exercise", () => {
       .should("be.visible");
   });
 
-  it("Validar login do usuário com email e senha incorretos", () => {
+  it("CT003: Validar login do usuário com email e senha incorretos", () => {
     cy.loginInvalid("usuario.inexistente@teste.com", "SenhaInvalida123");
     cy.contains("Your email or password is incorrect!").should("be.visible");
   });
 
-  it("Validar login e logout do usuário", () => {
+  it("CT004: Validar login e logout do usuário", () => {
     cy.login(Cypress.env("LOGIN_EMAIL"), Cypress.env("LOGIN_PASSWORD"));
 
     cy.get(".navbar-nav li")
@@ -65,12 +65,12 @@ describe("Automation Exercise", () => {
     cy.url().should("include", "/login");
   });
 
-  it("Validar o cadastro de usuário com e-mail existente", () => {
+  it("CT005: Validar o cadastro de usuário com e-mail existente", () => {
     cy.submeterCadastroComEmailDuplicado("Ravi", "ravi_bezerra@teste.com")
     cy.contains("Email Address already exist!").should("be.visible");
   });
 
-  it("Validar o envio das informações preenchidas no formulário de contato", () => {
+  it("CT006: Validar o envio das informações preenchidas no formulário de contato", () => {
     cy.get("a[href*=contact_us]").click();
     cy.contains("Get In Touch").should("be.visible");
 
@@ -93,12 +93,12 @@ describe("Automation Exercise", () => {
       .and("have.attr", "alt", "Website for automation practice");
   });
 
-  it("Validar o acesso a página de Casos de Teste", () => {
+  it("CT007: Validar o acesso a página de Casos de Teste", () => {
     cy.get(".navbar-nav li").contains("Test Cases").click();
     cy.contains("Test Cases").should("be.visible");
   });
 
-  it("Validar o acesso as páginas de catálogo e detalhes do produto", () => {
+  it("CT008: Validar o acesso as páginas de catálogo e detalhes do produto", () => {
     cy.get(".navbar-nav li").contains("Products").click();
     cy.contains("All Products").should("be.visible");
 
@@ -117,7 +117,7 @@ describe("Automation Exercise", () => {
       });
   });
 
-  it("Validar a pesquisa por um produto do catálogo", () => {
+  it("CT009: Validar a pesquisa por um produto do catálogo", () => {
     cy.get(".navbar-nav li").contains("Products").click();
     cy.contains("All Products").should("be.visible");
 
@@ -129,7 +129,7 @@ describe("Automation Exercise", () => {
     cy.contains("Premium Polo T-Shirts").should("be.visible");
   });
 
-  it("Validar assinatura na página inicial", () => {
+  it("CT010: Validar assinatura na página inicial", () => {
     cy.scrollTo("bottom");
     cy.contains("Subscription").should("be.visible");
     cy.get("#susbscribe_email").type("soraya@email.com");
@@ -139,7 +139,7 @@ describe("Automation Exercise", () => {
       .should("be.visible");
   });
 
-  it("Validar assinatura na página do carrinho", () => {
+  it("CT011: Validar assinatura na página do carrinho", () => {
     cy.get(".navbar-nav li").contains("Cart").click();
     cy.scrollTo("bottom");
     cy.contains("Subscription").should("be.visible");
@@ -150,7 +150,7 @@ describe("Automation Exercise", () => {
       .should("be.visible");
   });
 
-  it("Validar a inclusão de produtos no carrinho de compras", () => {
+  it("CT012: Validar a inclusão de produtos no carrinho de compras", () => {
     cy.get(".navbar-nav li").contains("Products").click();
     cy.get('[data-product-id="1"]').contains("Add to cart").click();
     cy.get(".btn-block").contains("Continue Shopping").click();
@@ -177,7 +177,7 @@ describe("Automation Exercise", () => {
       });
   });
 
-  it("Validar o aumento da quantidade de produtos no carrinho", () => {
+  it("CT013: Validar o aumento da quantidade de produtos no carrinho", () => {
     cy.get('a[href="/product_details/1"]').click();
     cy.url().should("include", "/product_details/1");
 
@@ -195,7 +195,7 @@ describe("Automation Exercise", () => {
     });
   });
 
-  it("Validar o registro de uma conta durante o checkout", () => {
+  it("CT014: Validar o registro de uma conta durante o checkout", () => {
     const user = {
       name: 'Pedro Vinicius',
       lastName: 'Andrade',
@@ -263,7 +263,7 @@ describe("Automation Exercise", () => {
       .and("have.attr", "alt", "Website for automation practice");
   });
 
-  it("Validar o registro de uma conta antes de finalizar a compra", () => {
+  it("CT015: Validar o registro de uma conta antes de finalizar a compra", () => {
     const user = {
       name: 'Ravi',
       lastName: 'Bezerra',
@@ -329,7 +329,7 @@ describe("Automation Exercise", () => {
       .and("have.attr", "alt", "Website for automation practice");
   });
 
-  it("Validar login bem-sucedido antes de efetuar uma compra", () => {
+  it("CT016: Validar login bem-sucedido antes de efetuar uma compra", () => {
     cy.login(Cypress.env("LOGIN_EMAIL"), Cypress.env("LOGIN_PASSWORD"));
 
     cy.get(".navbar-nav li")
@@ -376,7 +376,7 @@ describe("Automation Exercise", () => {
       .and("have.attr", "alt", "Website for automation practice");
   });
 
-  it("Validar a remoção de produtos do carrinho", () => {
+  it("CT017: Validar a remoção de produtos do carrinho", () => {
     cy.get('[data-product-id="3"]').contains("Add to cart").click();
     cy.get(".btn-block").contains("Continue Shopping").click();
 
@@ -392,7 +392,7 @@ describe("Automation Exercise", () => {
     cy.get("#product-4").should("not.exist");
   });
 
-  it("Validar o acesso aos produtos das categorias Women e Men", () => {
+  it("CT018: Validar o acesso aos produtos das categorias Women e Men", () => {
     cy.get(".panel-title").contains("Women").click();
     cy.get("#Women").contains("Dress").click();
     cy.contains("Women - Dress Products").should("be.visible");
@@ -402,7 +402,7 @@ describe("Automation Exercise", () => {
     cy.contains("Men - Jeans Products").should("be.visible");
   });
 
-  it("Validar o acesso aos produtos das marcas Polo e Mast & Harbour", () => {
+  it("CT019: Validar o acesso aos produtos das marcas Polo e Mast & Harbour", () => {
     cy.get(".navbar-nav li").contains("Products").click();
     cy.get('a[href="/brand_products/Polo"]').click();
     cy.contains("Brand - Polo Products").should("be.visible");
@@ -411,7 +411,7 @@ describe("Automation Exercise", () => {
     cy.contains("Brand - Mast & Harbour Products").should("be.visible");
   });
 
-  it("Validar a pesquisa de produtos disponíveis no catálogo", () => {
+  it("CT020: Validar a pesquisa de produtos disponíveis no catálogo", () => {
     cy.get(".navbar-nav li").contains("Products").click();
     cy.contains("All Products").should("be.visible");
 
@@ -435,7 +435,7 @@ describe("Automation Exercise", () => {
       .should("be.visible");
   });
 
-  it("Validar a inclusão da avaliação de um produto", () => {
+  it("CT021: Validar a inclusão da avaliação de um produto", () => {
     cy.get(".navbar-nav li").contains("Products").click();
     cy.contains("All Products").should("be.visible");
     cy.get('a[href="/product_details/1"]').click();
@@ -449,7 +449,7 @@ describe("Automation Exercise", () => {
     cy.contains("Thank you for your review.").should("be.visible");
   });
 
-  it("Validar a inclusão de um produto no carrinho a partir dos itens recomendados", () => {
+  it("CT022: Validar a inclusão de um produto no carrinho a partir dos itens recomendados", () => {
     cy.contains("recommended items").scrollIntoView().should("be.visible");
     cy.contains("Men Tshirt").should("be.visible");
     cy.get('[data-product-id="30"]').contains("Add to cart").click();
@@ -462,7 +462,7 @@ describe("Automation Exercise", () => {
       });
   });
 
-  it("Validar que os endereços de entrega e cobrança são idênticos na página de finalização da compra", () => {
+  it("CT023: Validar que os endereços de entrega e cobrança são idênticos na página de finalização da compra", () => {
     const user = {
       name: 'Alessandro',
       lastName: 'Santos',
@@ -528,7 +528,7 @@ describe("Automation Exercise", () => {
       .and("have.attr", "alt", "Website for automation practice");
   });
 
-  it("Validar o download da fatura após ordem da compra", () => {
+  it("CT024: Validar o download da fatura após ordem da compra", () => {
     const user = {
       name: 'Alex',
       lastName: 'Andrade',
@@ -623,7 +623,7 @@ describe("Automation Exercise", () => {
       .and("have.attr", "alt", "Website for automation practice");
   });
 
-  it("Validar a funcionalidade de rolagem para cima e para baixo usando o botão de seta", () => {
+  it("CT025: Validar a funcionalidade de rolagem para cima e para baixo usando o botão de seta", () => {
     cy.scrollTo("bottom");
     cy.contains("Subscription").should("be.visible");
     cy.get("#scrollUp").click();
@@ -631,7 +631,7 @@ describe("Automation Exercise", () => {
       "Full-Fledged practice website for Automation Engineers").should("be.visible");
   });
 
-  it("Validar a funcionalidade de rolagem para cima e para baixo sem o botão de seta", () => {
+  it("CT026: Validar a funcionalidade de rolagem para cima e para baixo sem o botão de seta", () => {
     cy.scrollTo("bottom");
     cy.contains("Subscription").should("be.visible");
     cy.wait(1000)

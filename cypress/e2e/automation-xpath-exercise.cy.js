@@ -11,7 +11,7 @@ describe("Automation Exercise", () => {
       .and("have.attr", "alt", "Website for automation practice");
   });
 
-  it("Cadastrar um novo usuário com sucesso", () => {
+  it("Validar o cadastro de um novo usuário com sucesso", () => {
     cy.contains("New User Signup!").should("be.visible");
     cy.xpath("//input[@data-qa='signup-name']").type("QA Automation");
 
