@@ -1,7 +1,7 @@
 {
     "auth": {
-        "username": "<definido por variável de ambiente>",
-        "access_key": "<definido por variável de ambiente>"
+        "username": "",
+        "access_key": ""
     },
     "browsers": [
         {
