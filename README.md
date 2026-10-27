@@ -1,6 +1,6 @@
 # Automação Web com Cypress
 
-![WEB E2E TESTS](https://github.com/andrade30/pgats-automacao-web-2026/actions/workflows/cypress.yml/badge.svg)
+[WEB E2E TESTS](https://github.com/andrade30/pgats-automacao-web-2026/actions/workflows/cypress.yml/badge.svg)
 
 Projeto final da disciplina de Automação de Testes na Camada de Interface (Web) da Pós-Graduação em Automação de Testes de Software (PGATS), desenvolvido com foco em automação web end-to-end. Os cenários validam funcionalidades do site [Automation Exercise](https://automationexercise.com), aplicando boas práticas de organização, reutilização de código e integração contínua.
 
