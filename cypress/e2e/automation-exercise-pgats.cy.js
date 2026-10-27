@@ -108,9 +108,6 @@ describe("Automation Exercise", () => {
       .each(($el) => {
         expect($el.text()).to.contain(produto.name);
     });
-
-    // cy.contains("Premium Polo T-Shirts")
-    //   .should("be.visible");
   });
 
   it("CT010: Validar assinatura na página inicial", () => {
