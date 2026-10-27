@@ -1,7 +1,17 @@
-const { defineConfig } = require("cypress");
+import { defineConfig } from "cypress";
 
 module.exports = defineConfig({
   reporter: 'cypress-mochawesome-reporter',
+  reporterOptions: {
+    reportDir: "cypress/reports",
+    reportPageTitle: "Automation Exercise - Relatório de testes",
+    charts: true,
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    saveAllAttempts: false,
+  },
+  retries: { runMode: 2, openMode: 0 },
+  video: false,
   e2e: {
     baseUrl: 'https://automationexercise.com',
     env: {
