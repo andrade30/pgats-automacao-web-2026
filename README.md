@@ -2,53 +2,60 @@
 
 ![WEB E2E TESTS](https://github.com/andrade30/pgats-automacao-web-2026/actions/workflows/cypress.yml/badge.svg)
 
-Projeto de automação de testes end-to-end desenvolvido como parte dos estudos de QA e automação web. Os cenários validam funcionalidades do site [Automation Exercise](https://automationexercise.com) e exercícios complementares do site [The Internet](https://the-internet.herokuapp.com).
+Projeto final da disciplina de Automação de Testes na Camada de Interface (Web) da Pós-Graduação em Automação de Testes de Software (PGATS), desenvolvido com foco em automação web end-to-end. Os cenários validam funcionalidades do site [Automation Exercise](https://automationexercise.com), aplicando boas práticas de organização, reutilização de código e integração contínua.
 
 ## Tecnologias
 
 - [Cypress](https://www.cypress.io/) 13
 - JavaScript
-- Cypress Mochawesome Reporter para geração de relatórios
+- [Faker](https://fakerjs.dev/) para geração de dados dinâmicos (spec `automation-exercise-faker`)
+- Cypress Mochawesome Reporter para geração de relatórios HTML
 - BrowserStack para execução remota dos testes
 - GitHub Actions para integração contínua
 
 ## Cenários cobertos
 
-Os testes incluem, entre outros:
-
 - Cadastro de usuário, incluindo criação e exclusão de conta.
-- Login e validação de credenciais incorretas.
+- Login com credenciais corretas e incorretas.
 - Tentativa de cadastro com e-mail já existente.
 - Navegação, pesquisa e detalhes de produtos.
-- Assinatura de newsletter e fluxo de checkout.
-- Seletores XPath, drag and drop e navegação entre janelas.
+- Assinatura de newsletter.
+- Fluxo de compra (carrinho, checkout e pagamento) com usuário recém-cadastrado e com usuário logado.
+- Uso de seletores XPath.
+
+## Specs
+
+| Spec | Descrição |
+|---|---|
+| `automation-exercise-pgats.cy.js` | Cenários principais do projeto, com fixtures e comandos customizados |
+| `automation-exercise-modules.cy.js` | Mesmos fluxos organizados em módulos reutilizáveis por funcionalidade |
+| `automation-exercise-faker.cy.js` | Cenários com dados dinâmicos gerados pelo Faker |
+| `automation-xpath-exercise.cy.js` | Exercícios com seletores XPath |
 
 ## Estrutura do projeto
 
 ```text
 .
-├── .github/workflows/  # Pipeline do GitHub Actions
+├── .github/workflows/   # Pipeline do GitHub Actions
 ├── cypress/
-│   ├── e2e/            # Cenários de teste end-to-end
-│   ├── fixtures/       # Dados de teste (users, products, payment)
-│   ├── modules/        # Módulos reutilizáveis por funcionalidade
-│   └── support/        # Custom commands e configuração global
-├── browserstack.json   # Configuração da execução no BrowserStack
-├── cypress.config.js   # Configuração do Cypress e do reporter
-└── package.json        # Dependências e scripts npm
+│   ├── e2e/             # Specs dos cenários de teste
+│   ├── fixtures/        # Dados de teste (users, products, payment)
+│   ├── modules/         # Módulos reutilizáveis por funcionalidade
+│   └── support/         # Comandos customizados e configuração global
+├── browserstack.json    # Configuração da execução no BrowserStack
+├── cypress.config.js    # Configuração do Cypress e do reporter
+└── package.json         # Dependências e scripts npm
 ```
 
 Para mais detalhes sobre os padrões de organização e implementação, consulte [diretrizes-arquitetura-projeto.md](./diretrizes-arquitetura-projeto.md).
 
 ## Pré-requisitos
 
-- Node.js 20 ou superior e npm instalados.
-- Acesso à internet para acessar os sites testados.
-- Credenciais do BrowserStack para executar testes remotamente.
+- Node.js 20 ou superior e npm
+- Acesso à internet
+- Credenciais do BrowserStack (apenas para execução remota)
 
 ## Instalação
-
-Clone o repositório, acesse a pasta do projeto e instale as dependências:
 
 ```bash
 git clone https://github.com/andrade30/pgats-automacao-web-2026.git
@@ -72,19 +79,25 @@ Alguns cenários (login, cadastro com e-mail existente e compra com usuário log
 
 ## Executar os testes localmente
 
-Abrir o Cypress em modo interativo:
+Modo interativo:
 
 ```bash
 npx cypress open
 ```
 
-Executar os testes em modo headless:
+Modo headless (gera o relatório):
 
 ```bash
 npx cypress run
 ```
 
-O endereço-base configurado para o Cypress é `https://automationexercise.com`. Alguns cenários complementares acessam outros sites diretamente.
+Para executar um spec específico:
+
+```bash
+npx cypress run --spec "cypress/e2e/automation-exercise-pgats.cy.js"
+```
+
+O endereço-base configurado é `https://automationexercise.com`.
 
 ## Executar no BrowserStack
 
@@ -96,11 +109,11 @@ O endereço-base configurado para o Cypress é `https://automationexercise.com`.
 npm run test:browserstack
 ```
 
-Não compartilhe nem versione o arquivo `.env` ou credenciais. O arquivo `browserstack.json` define a configuração do navegador e da execução remota.
+Não compartilhe nem versione o arquivo `.env` ou credenciais. O arquivo `browserstack.json` define os navegadores e as configurações da execução remota.
 
 ## Relatórios
 
-O Cypress está configurado com o reporter Mochawesome, incluindo gráficos e capturas de tela incorporadas ao relatório.
+O Cypress usa o reporter Mochawesome, com gráficos e capturas de tela incorporadas ao HTML.
 
 - **Local:** após `npx cypress run`, abra `cypress/reports/html/index.html`.
 - **Pipeline:** na execução do workflow, baixe o artifact `relatorio-cypress`, extraia o ZIP e abra o `index.html`.
@@ -109,7 +122,7 @@ O Cypress está configurado com o reporter Mochawesome, incluindo gráficos e ca
 
 O workflow `WEB E2E TESTS` (`.github/workflows/cypress.yml`) roda em push e pull request para a `main`, e também manualmente (`workflow_dispatch`):
 
-1. **Cypress (Chrome):** executa os testes e publica o relatório HTML como artifact (`relatorio-cypress`). Em caso de falha, publica também os screenshots.
+1. **Cypress (Chrome):** executa os testes e publica o relatório HTML como artifact. Em caso de falha, publica também os screenshots.
 2. **BrowserStack:** executa após o sucesso do job anterior.
 
 ### Secrets necessários
@@ -124,6 +137,6 @@ Cadastre em **Settings → Secrets and variables → Actions → Repository secr
 | `BROWSERSTACK_USERNAME` | Usuário do BrowserStack |
 | `BROWSERSTACK_ACCESS_KEY` | Chave de acesso do BrowserStack |
 
-## Assinatura
+## Autor
 
 **Alessandro Andrade**
